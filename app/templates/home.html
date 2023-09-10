@@ -9,12 +9,12 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Hn_4LZEUFMqXoTPt8bpg6wfVCUNW87E"></script>
         <style>
             #map {
-                height: 400px;
+                height: 600px;
                 width: 100%;
             }
         </style>
     </head>
-    
+
     <body>
         {% extends 'base.html' %}
         {% block content %}
@@ -41,10 +41,10 @@
                     $("#longitude").text(longitude);
 
                     var latLng = new google.maps.LatLng(latitude, longitude);
+                    var ubiCar = new google.maps.LatLng(6.179164805178549, -75.58838262820495);
 
                     var mapOptions = {
-                        center: latLng,
-                        zoom: 15
+                        zoom: 50
                     };
 
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -54,6 +54,43 @@
                         map: map,
                         title: "Mi Ubicación"
                     });
+
+                    var conductor = new google.maps.Marker({
+                        position: ubiCar,
+                        map: map,
+                        icon: {
+                            url: 'https://static.thenounproject.com/png/3914609-200.png',
+                            scaledSize: new google.maps.Size(40, 40)
+                        },
+                        title: 'Conductor'
+                    });
+
+                    var dService = new google.maps.DirectionsService();
+                    var dRender = new google.maps.DirectionsRenderer({
+                        map: map,
+                        suppressMarkers: true
+                    });
+
+                    var request = {
+                        origin: ubiCar,
+                        destination: latLng,
+                        travelMode: google.maps.TravelMode.DRIVING
+                    };
+
+                    dService.route(request, function(result, status){
+                        if (status == google.maps.DirectionsStatus.OK){
+                            dRender.setDirections(result);
+                        }else{
+                            console.error('Error al obtener direcciones', status);
+                        }
+                    });
+
+                    var bounds = new google.maps.LatLngBounds();
+                    bounds.extend(latLng);
+                    bounds.extend(ubiCar);
+
+                    map.fitBounds(bounds);
+
                 }, function(error) {
                     console.error("Error al obtener la ubicación GPS:", error);
                 });
