@@ -14,12 +14,19 @@ Mobile application for women transportation
 10.6.0
 
 ## Requirements
-You must have the following packages in your python interpreter or your python virtual enviroment in order to execute it.
+You must have the following packages in your python interpreter or your python virtual enviroment in order to execute it.\
 ![](https://camo.githubusercontent.com/5202aaf6d5abda92faebdc87814e4be570294e7063369fd614bdb757e93a0025/68747470733a2f2f736b696c6c69636f6e732e6465762f69636f6e733f693d646a616e676f)
 
 # Django used version
+4.2.4
 
 ```
 python -m pip install django
 
+```
+# Pillow Version
+10.0.0
+
+```
+python -m pip install Pillow
 ```
