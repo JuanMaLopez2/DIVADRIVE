@@ -20,7 +20,6 @@ You must have the following packages in your python interpreter or your python v
 # Django used version
 
 ```
-function test() {
-  console.log("python -m pip install django");
-}
+python -m pip install django
+
 ```
