@@ -1,9 +1,9 @@
 # DIVADRIVE
 Mobile application for women transportation
 # FUNCTIONS
-  -
-  -
-  -
+  - Request a transportation service
+  - See in real time the location of the driver and the route he takes
+  - For greater security when registering and logging in, it is necessary to go through the facial recognition system
 # TECNOLOGY
 ![](https://camo.githubusercontent.com/6a9e440abe7195550fbb7385593e3838031e3d1cbbf3802c385beebe76fe6dbb/68747470733a2f2f736b696c6c69636f6e732e6465762f69636f6e733f693d707974686f6e)
 
