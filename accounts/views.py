@@ -43,3 +43,6 @@ def loginaccount(request):
     else:
         login(request,user)
     return redirect('home')
+
+def welcome (request):
+    return render(request, 'welcome.html')
