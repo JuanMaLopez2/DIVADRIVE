@@ -18,16 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from app import views as appViews
 from FAQ import views as FAQviews
+from accounts import views as accViews
 
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', appViews.home, name= 'home'),
-    path('welcome', appViews.welcome),
+    path('home/', appViews.home, name= 'home'),
+    path('', appViews.welcome),
     path('accounts/', include('accounts.urls')),
-    path('FAQ', FAQviews.FAQ, name='FAQ')
+    path('FAQ/', FAQviews.FAQ, name='FAQ'),
+    path('login/', accViews.loginaccount, name ='loginaccount'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

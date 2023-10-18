@@ -15,7 +15,7 @@
         }
 
         .sesion {
-            background-color: #fff;
+            background-color: #bfa6f9;
             padding: 15px;
             border-radius: 10px;
             text-align: center;
@@ -29,8 +29,32 @@
 </head>
 <body>
     <h1>Bienvenido a <span style="color:#957bd6">Diva</span>Drive</h1>
+    <style>
+        /* Estilos para el botón */
+        .faq-submit {
+            background-color: #957bd6; /* Color de fondo */
+            color: #fff; /* Color de texto */
+            padding: 10px 20px; /* Relleno interno (espacio alrededor del texto) */
+            border: none; /* Borde ninguno */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+        }
+
+        /* Estilos para el enlace */
+        .faq-submit a {
+            text-decoration: none; /* Quita el subrayado del enlace */
+            color: #fff; /* Color de texto para el enlace */
+        }
+
+        /* Estilos para el enlace al pasar el ratón (hover) */
+        .faq-submit a:hover {
+            text-decoration: underline; /* Subrayado al pasar el ratón */
+        }
+    </style>
     <div class="sesion">
-        <p>Iniciar sesión</p>
+        <a href="login">
+            <button class="faq-submit" type="submit">Iniciar sesión</button>
+        </a>
     </div> 
 </body>
 </html>
