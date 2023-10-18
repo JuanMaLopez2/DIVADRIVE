@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Preguntas Frecuentes{% endblock %}
+
+{% block header %}FAQ - Preguntas Frecuentes{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <div class="faq-container">
+        <h2 class="faq-title">Preguntas Frecuentes</h2>
+        
+        <p class="faq-description">Aquí encontrarás respuestas a preguntas comunes.</p>
+        
+        <div class="faq-item">
+            <h3 class="faq-question">¿Qué es Divadrive?</h3>
+            <p class="faq-answer">Somos un grupo que busca el bienestar, comodidad y seguridad de las mujeres en el Valle de Aburrá a la hora de transportarse.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3 class="faq-question">¿Cómo iniciar sesión?</h3>
+            <p class="faq-answer">En la página de inicio, encontrarás un botón llamado Login. Haz clic y serás dirigido a la página de inicio de sesión. Ingresa tus datos y habrás iniciado sesión inmediatamente.</p>
+        </div>
+
+        <!-- Campo de texto para que los usuarios puedan escribir -->
+        <form class="faq-form" action="/enviar-pregunta" method="post">
+            <label class="faq-label" for="pregunta">Haz tu pregunta:</label>
+            <input class="faq-input" type="text" id="pregunta" name="pregunta" required>
+            <button class="faq-submit" type="submit">Enviar</button>
+        </form>
+    </div>
+{% endblock %}
