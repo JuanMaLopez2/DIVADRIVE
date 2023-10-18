@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app import views as appViews
-
+from FAQ import views as FAQviews
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', appViews.home, name= 'home'),
     path('accounts/', include('accounts.urls')),
+    path('FAQ', FAQviews.FAQ, name='FAQ')
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
