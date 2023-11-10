@@ -4,7 +4,7 @@
     <div class="row g-0">
         <div>
             <div class="card-body">
-                <h5 class="card-title">Login</h5>
+                <h5 class="card-title">Change password</h5>
                 {% if error %}
                 <div class="alert alert-danger mt-3" role="alert">
                     {{ error }}
@@ -14,11 +14,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-                    <form method="UPDATE" action="{% url 'recoverpassword' %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Forgot password?</button>
+                        <button type="submit" class="btn btn-primary">Change password</button>
                     </form>
                 </p>
             </div>
