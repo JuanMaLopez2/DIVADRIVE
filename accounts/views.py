@@ -1,12 +1,10 @@
-from django.shortcuts import render
-from .forms import UserCreateForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import redirect
-from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
+from .forms import UserCreateForm, UserRecoverForm
 
 
 def signupaccount(request):
@@ -50,10 +48,6 @@ def loginaccount(request):
         return redirect('recoverpassword')
     else:
         return render(request, 'loginaccount.html', {'form': AuthenticationForm()})
-
-from django.contrib.auth import get_user_model, login, authenticate
-from django.shortcuts import render, redirect
-from .forms import UserRecoverForm
 
 def recoverPassword(request):
     if request.method == 'POST':
