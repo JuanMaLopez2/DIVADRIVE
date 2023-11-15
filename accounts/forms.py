@@ -1,14 +1,27 @@
 from django import forms
+from .models import UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth import get_user_model
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from .models import UserProfile
+from django.contrib.auth.models import User
 
 class UserCreateForm(UserCreationForm):
+    profile_picture = forms.ImageField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2', 'profile_picture']
+
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)
         for fieldname in ['username', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
             self.fields[fieldname].widget.attrs.update({'class': 'form-control'})
+        self.fields['profile_picture'].widget.attrs.update({'class': 'form-control'})
+
 
 class UserRecoverForm(PasswordResetForm):
     email = forms.CharField(

@@ -11,8 +11,13 @@
                     </div>
                 {% endif %}    
                 <p class="card-text">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <strong>Error:</strong> {{ form.errors }}
+                            </div>
+                        {% endif %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-primary">
                            Sign Up

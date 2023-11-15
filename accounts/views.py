@@ -5,26 +5,41 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from .forms import UserCreateForm, UserRecoverForm
+from .models import UserProfile
 
 
 def signupaccount(request):
-    if request.method == 'GET':
-        return render(request, 'signupaccount.html',
-            {'form':UserCreateForm})
-    else:
-        if request.POST['password1'] == request.POST['password2']:
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST, request.FILES)
+        if form.is_valid():
             try:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-                user.save()
+                user = form.save()
+                
+                # Crea el UserProfile asociado al usuario
+                profile_picture = form.cleaned_data['profile_picture']
+                UserProfile.objects.create(user=user, profile_picture=profile_picture)
+
                 login(request, user)
                 return redirect('home')
             except IntegrityError:
-                return render(request, 'signupaccount.html',
-                {'form':UserCreateForm,
-                'error':'Username already taken. Choose new username.'})
-        else:
-            return render(request, 'signupaccount.html',
-            {'form':UserCreateForm, 'error':'Passwords do not match'})
+                return render(request, 'signupaccount.html', {'form': form, 'error': 'Username already taken. Choose a new username.'})
+    else:
+        form = UserCreateForm()
+    return render(request, 'signupaccount.html', {'form': form})
+
+'''def signupaccount(request):
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                user = form.save()
+                login(request, user)
+                return redirect('home')
+            except IntegrityError:
+                return render(request, 'signupaccount.html', {'form': form, 'error': 'Username already taken. Choose a new username.'})
+    else:
+        form = UserCreateForm()
+    return render(request, 'signupaccount.html', {'form': form})'''
 
 @login_required
 def logoutaccount(request):
