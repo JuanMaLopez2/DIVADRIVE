@@ -11,12 +11,18 @@
                 </div>
                 {% endif %}
                 <p class="card-text">
-                    <form method="POST">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ form.username.label_tag }} {{ form.username }}
+                        {{ form.password.label_tag }} {{ form.password }}
+                        
+                        <!-- Add the input field for the profile picture -->
+                        <input type="file" name="profile_picture" accept="image/*" class="form-control">
+                        
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
-                    <form method="UPDATE" action="{% url 'recoverpassword' %}">
+                    
+                    <form method="POST" action="{% url 'recoverpassword' %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary">Forgot password?</button>
                     </form>
